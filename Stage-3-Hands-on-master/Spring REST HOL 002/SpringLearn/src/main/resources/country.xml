@@ -1,0 +1,49 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<!-- To understand the concept of Bean scope: change the scope="prototype" 
+		to scope="singleton" -->
+	<bean id="country" class="com.cognizant.springlearn.model.Country"
+		scope="prototype">
+		<property name="code" value="IN" />
+		<property name="name" value="India" />
+	</bean>
+
+	<!-- List of Bean for Country -->
+	<!-- Country Bean for India -->
+	<bean id="in" class="com.cognizant.springlearn.model.Country">
+		<property name="code" value="IN" />
+		<property name="name" value="India" />
+	</bean>
+	<!-- Country Bean for UnitedStates -->
+	<bean id="us" class="com.cognizant.springlearn.model.Country">
+		<property name="code" value="US" />
+		<property name="name" value="United States" />
+	</bean>
+	<!-- Country Bean for GERMANY -->
+	<bean id="de" class="com.cognizant.springlearn.model.Country">
+		<property name="code" value="DE" />
+		<property name="name" value="GERMANY" />
+	</bean>
+	<!-- Country Bean for JAPAN -->
+	<bean id="jp" class="com.cognizant.springlearn.model.Country">
+		<property name="code" value="JP" />
+		<property name="name" value="JAPAN" />
+	</bean>
+	<!-- List of Country Bean: Array List -->
+	<bean id="countryList" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="in"></ref>
+				<ref bean="us"></ref>
+				<ref bean="de"></ref>
+				<ref bean="jp"></ref>
+			</list>
+		</constructor-arg>
+	</bean>
+</beans>
+
+<!-- US United States DE Germany IN India JP Japan -->

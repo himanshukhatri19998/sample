@@ -1,0 +1,125 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd
+  ">
+
+	<context:annotation-config />
+
+	<!-- Date Formatter -->
+	<bean id="dateFormatter" class="java.text.SimpleDateFormat">
+		<constructor-arg index="0" value="dd/MM/yyyy" />
+	</bean>
+
+
+	<!-- List of Department Bean -->
+	<!-- Bean: Department = IT -->
+	<bean id="it" class="com.cognizant.employee.model.Department">
+		<property name="departmentId" value="1234" />
+		<property name="departmentName" value="IT" />
+	</bean>
+	<!-- Bean: Department = HR -->
+	<bean id="hr" class="com.cognizant.employee.model.Department">
+		<property name="departmentId" value="1000" />
+		<property name="departmentName" value="HR" />
+	</bean>
+	<!-- ArrayList Of Department Beans -->
+	<bean id="departmentList" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="it" />
+				<ref bean="hr" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- List of Skill Bean -->
+	<!-- Bean: Skill = JAVA -->
+	<bean id="skill1" class="com.cognizant.employee.model.Skill">
+		<property name="skillId" value="101" />
+		<property name="skillName" value="JAVA" />
+	</bean>
+	<!-- Bean: Skill = AI -->
+	<bean id="skill2" class="com.cognizant.employee.model.Skill">
+		<property name="skillId" value="102" />
+		<property name="skillName" value="AI" />
+	</bean>
+
+	<!-- List of Employee Beans -->
+	<!-- Employee Bean for id=101, name=Bhavik -->
+	<bean id="employee1" class="com.cognizant.employee.model.Employee">
+		<property name="employeeId" value="101" />
+		<property name="employeeName" value="Bhavik" />
+		<property name="salary" value="55000" />
+		<property name="permanent" value="yes" />
+		<property name="dateOfBirth">
+			<bean factory-bean="dateFormatter" class="java.util.Date"
+				factory-method="parse">
+				<constructor-arg value="23/03/1993" />
+			</bean>
+		</property>
+		<property name="department" ref="it"></property>
+		<property name="skill" ref="skill2" />
+	</bean>
+	<!-- Employee Bean for id=102, name=Raj -->
+	<bean id="employee2" class="com.cognizant.employee.model.Employee">
+		<property name="employeeId" value="102" />
+		<property name="employeeName" value="Raj" />
+		<property name="salary" value="80000" />
+		<property name="permanent" value="yes" />
+		<property name="dateOfBirth">
+			<bean factory-bean="dateFormatter" class="java.util.Date"
+				factory-method="parse">
+				<constructor-arg value="24/12/1997" />
+			</bean>
+		</property>
+		<property name="department" ref="hr"></property>
+		<property name="skill" ref="skill2" />
+	</bean>
+	<!-- Employee Bean for id=103, name=Yash -->
+	<bean id="employee3" class="com.cognizant.employee.model.Employee">
+		<property name="employeeId" value="103" />
+		<property name="employeeName" value="Yash" />
+		<property name="salary" value="45000" />
+		<property name="permanent" value="no" />
+		<property name="dateOfBirth">
+			<bean factory-bean="dateFormatter" class="java.util.Date"
+				factory-method="parse">
+				<constructor-arg value="12/03/1998" />
+			</bean>
+		</property>
+		<property name="department" ref="it"></property>
+		<property name="skill" ref="skill1" />
+	</bean>
+	<!-- Employee Bean for id=104, name=Om -->
+	<bean id="employee4" class="com.cognizant.employee.model.Employee">
+		<property name="employeeId" value="104" />
+		<property name="employeeName" value="Om" />
+		<property name="salary" value="70000" />
+		<property name="permanent" value="no" />
+		<property name="dateOfBirth">
+			<bean factory-bean="dateFormatter" class="java.util.Date"
+				factory-method="parse">
+				<constructor-arg value="11/06/1987" />
+			</bean>
+		</property>
+		<property name="department" ref="hr"></property>
+		<property name="skill" ref="skill1" />
+	</bean>
+	<!-- ArrayList of Employee Bean -->
+	<bean id="employeeList" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="employee1" />
+				<ref bean="employee2" />
+				<ref bean="employee3" />
+				<ref bean="employee4" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+</beans>
